@@ -5,4 +5,5 @@ class ApiConsts {
   static String baseUrl = "https://api.themoviedb.org/3";
   static String popularMoviesEndpoint = "/movie/popular";
   static String newlyReleasedMovies = "/movie/upcoming";
+  static String getRecommendedMoviesEndpoint="/movie/top_rated";
 }
