@@ -6,16 +6,18 @@ import 'package:movies_app/support/resources/api_info/api_consts.dart';
 
 class MovieCard extends StatelessWidget {
   final String impagePath;
+  final double height;
+  final double width;
 
-  const MovieCard({super.key, required this.impagePath});
+  const MovieCard({super.key, required this.impagePath, required this.height, required this.width});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
         Container(
-          height: 351.h,
-          width: 234.w,
+          height: height,
+          width: width,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
              // color: AppColors.transparentBlack,

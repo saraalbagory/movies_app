@@ -7,6 +7,7 @@ import 'package:movies_app/features/movies/domain/usecases/view_newly_released_m
 import 'package:movies_app/features/movies/domain/usecases/view_popular_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
+import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
