@@ -1,17 +1,19 @@
+import 'package:movies_app/features/browse/data/data_sources/api_genres_get.dart';
+import 'package:movies_app/features/browse/data/models/GenresModel.dart';
 import 'package:dio/dio.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_movies_by_genre.dart';
-import 'package:movies_app/features/movies/data/models/GenresModel.dart';
-import 'package:movies_app/features/movies/data/models/moviesByGenre.dart';
 import 'package:movies_app/support/resources/api_info/api_consts.dart';
 
-class ApiMoviesByGenreImpl extends ApiMoviesByGenre {
+class ApiGenresGetImpl extends ApiGenresGet {
   final dio = Dio(BaseOptions(baseUrl: ApiConsts.baseUrl));
   @override
-  Future<MoviesByGenre> getMoviesByGenre(Genre genre) async {
+  Future<Genres> getAllGenres() async {
+    // TODO: implement getAllGenres
     try {
       var response = await dio.get(
         ApiConsts.getAllGenres,
-        queryParameters: {'api_key': ApiConsts.apiKey, 'with_genres': genre.id},
+        queryParameters: {
+          'api_key': ApiConsts.apiKey,
+        },
         options: Options(
           headers: {
             'Authorization':
@@ -23,7 +25,7 @@ class ApiMoviesByGenreImpl extends ApiMoviesByGenre {
         throw Exception("No data received from the API.");
       }
       print(response.data);
-      return MoviesByGenre.fromJson(response.data);
+      return Genres.fromJson(response.data);
     } catch (e) {
       print(e.toString());
       throw e.toString();

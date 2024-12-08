@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_genres_get.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_genres_get_impl.dart';
-import 'package:movies_app/features/movies/data/models/GenresModel.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/genreCard.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_genres_get.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_genres_get_impl.dart';
+import 'package:movies_app/features/browse/data/models/GenresModel.dart';
+import 'package:movies_app/features/browse/presentation/widgets/genreCard.dart';
 
 class GenresView extends StatelessWidget {
   GenresView({super.key /*, required this.apiGenresGet*/});

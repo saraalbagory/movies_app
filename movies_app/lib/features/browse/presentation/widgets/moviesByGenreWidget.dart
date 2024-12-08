@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_movies_by_genre.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_movies_by_genre_impl.dart';
-import 'package:movies_app/features/movies/data/models/GenresModel.dart';
-import 'package:movies_app/features/movies/data/models/moviesByGenre.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
+import 'package:movies_app/features/browse/data/models/GenresModel.dart';
+import 'package:movies_app/features/browse/data/models/moviesByGenre.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movie_card.dart';
 

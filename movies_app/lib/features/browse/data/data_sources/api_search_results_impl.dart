@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/movies/data/models/SearchReturnModel.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
+import 'package:movies_app/features/browse/data/models/SearchReturnModel.dart';
 import 'package:movies_app/support/resources/api_info/api_consts.dart';
 
 class ApiSearchResultsImpl extends ApiSearchResult {
