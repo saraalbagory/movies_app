@@ -6,7 +6,9 @@ import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dar
 import 'package:movies_app/features/movies/domain/usecases/view_newly_released_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_popular_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
+import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,20 +20,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const  MovieListScreen(title: 'Flutter Demo Home Page'),
+    //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
+    return ScreenUtilInit(
+      designSize: const Size(430, 932),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      // Use builder only if you need to use library outside ScreenUtilInit context
+      builder: (_, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: child,
+        );
+      },
+      child: const HomeScreen(),
     );
+    
   }
 }
-
-
-
 
 class MovieListScreen extends StatefulWidget {
   final String title;
@@ -55,7 +60,7 @@ class _MovieListScreenState extends State<MovieListScreen> {
   Widget build(BuildContext context) {
     // Initialize dependencies
     MoviesRepository repo = MovieRepositoryImpl(ApiLocator.apiDataSource);
-    ViewRecommendedMovies usecase = ViewRecommendedMovies(repo) ;
+    ViewRecommendedMovies usecase = ViewRecommendedMovies(repo);
     Future<List<MovieModel>> moviesFuture = usecase();
 
     return Scaffold(
@@ -85,8 +90,9 @@ class _MovieListScreenState extends State<MovieListScreen> {
                 itemBuilder: (context, index) {
                   final movie = movies[index];
                   return ListTile(
-                    title: Text(movie.title??" "),
-                    subtitle: Text(movie.overview?? 'No description available'),
+                    title: Text(movie.title ?? " "),
+                    subtitle:
+                        Text(movie.overview ?? 'No description available'),
                   );
                 },
               );
@@ -105,4 +111,3 @@ class _MovieListScreenState extends State<MovieListScreen> {
     );
   }
 }
-
