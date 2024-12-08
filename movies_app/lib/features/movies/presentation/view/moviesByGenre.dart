@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:movies_app/features/movies/data/models/GenresModel.dart';
+import 'package:movies_app/features/movies/presentation/view/widgets/moviesByGenreWidget.dart';
 
 class MoviesbyGenre extends StatelessWidget {
   const MoviesbyGenre({super.key, required this.genre});
@@ -17,7 +18,7 @@ class MoviesbyGenre extends StatelessWidget {
             icon: Icon(Icons.arrow_back_ios)),
       ),
       body: Column(
-        children: [],
+        children: [MoviesbyGenreWidget(genre: genre)],
       ),
     );
   }
