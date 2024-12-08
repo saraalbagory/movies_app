@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:movies_app/features/movies/data/models/GenresModel.dart';
-import 'package:movies_app/features/movies/presentation/view/moviesByGenre.dart';
+import 'package:movies_app/features/browse/data/models/GenresModel.dart';
+import 'package:movies_app/features/browse/presentation/screens/moviesByGenre.dart';
 
 class GenreCard extends StatelessWidget {
   const GenreCard({super.key, required this.genre});

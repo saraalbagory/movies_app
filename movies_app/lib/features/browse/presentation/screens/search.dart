@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_search_results_impl.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/searchResultsWidget.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_results_impl.dart';
+import 'package:movies_app/features/browse/presentation/widgets/searchResultsWidget.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
