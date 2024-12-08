@@ -1,38 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
 import 'package:movies_app/features/browse/data/models/GenresModel.dart';
-import 'package:movies_app/features/browse/data/models/moviesByGenre.dart';
-import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
+import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit.dart';
+import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit_states.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movie_card.dart';
 
 class MoviesbyGenreWidget extends StatelessWidget {
-  MoviesbyGenreWidget({super.key, required this.genre});
   final Genre genre;
-  final ApiMoviesByGenre apiMoviesByGenre = ApiMoviesByGenreImpl();
+
+  const MoviesbyGenreWidget({super.key, required this.genre});
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<MoviesByGenre>(
-      future: apiMoviesByGenre.getMoviesByGenre(genre),
-      builder: (context, moviesByGenresSnapshot) {
-        if (moviesByGenresSnapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (moviesByGenresSnapshot.hasError) {
-          return Center(
-            child: Text("Error: ${moviesByGenresSnapshot.error}"),
-          );
-        } else if (moviesByGenresSnapshot.hasData) {
-          // Safely extract the genre list
-          final movies = moviesByGenresSnapshot.data?.results ?? [];
+    context.read<MoviesByGenreCubit>().fetchMoviesByGenre(genre);
+
+    return BlocBuilder<MoviesByGenreCubit, MoviesByGenreState>(
+      builder: (context, state) {
+        if (state is MoviesByGenreLoading) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is MoviesByGenreError) {
+          return Center(child: Text("Error: ${state.message}"));
+        } else if (state is MoviesByGenreLoaded) {
+          final movies = state.movies;
 
           if (movies.isEmpty) {
-            return const Center(
-              child: Text("No Movies found."),
-            );
+            return const Center(child: Text("No Movies found."));
           }
 
           return ListView.builder(
@@ -42,15 +35,14 @@ class MoviesbyGenreWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               final movie = movies[index];
               return MovieCard(
-                  impagePath: movie.backdropPath ?? '',
-                  height: 100.h,
-                  width: 80.w);
+                impagePath: movie.backdropPath ?? '',
+                height: 200.h,
+                width: 100.w,
+              );
             },
           );
         }
-        return const Center(
-          child: Text("Something went wrong."),
-        );
+        return const Center(child: Text("Something went wrong."));
       },
     );
   }

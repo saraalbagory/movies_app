@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_results_impl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:movies_app/features/browse/presentation/widgets/searchResultsWidget.dart';
 
 class Search extends StatefulWidget {
@@ -27,8 +27,9 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    final searchCubit = context.read<SearchCubit>();
     // to be changed
-    ApiSearchResult apiSearchResult = ApiSearchResultsImpl();
+    //ApiSearchResult apiSearchResult = ApiSearchResultsImpl();
 
     return Scaffold(
       appBar: AppBar(
@@ -47,14 +48,15 @@ class _SearchState extends State<Search> {
             TextField(
               controller: controller,
               onChanged: (value) {
-                setState(() {});
+                //setState(() {});
+                searchCubit.searchMovies(value);
               },
               decoration: const InputDecoration(hintText: 'Search...'),
             ),
             Expanded(
               child: SearchResultsWidgets(
                 query: controller.text,
-                apiSearchResult: apiSearchResult,
+                //apiSearchResult: apiSearchResult,
               ),
             ),
           ],

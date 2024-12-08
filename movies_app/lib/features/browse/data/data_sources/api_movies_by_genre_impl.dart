@@ -10,7 +10,7 @@ class ApiMoviesByGenreImpl extends ApiMoviesByGenre {
   Future<MoviesByGenre> getMoviesByGenre(Genre genre) async {
     try {
       var response = await dio.get(
-        ApiConsts.getAllGenres,
+        ApiConsts.getMoviesByGenre,
         queryParameters: {'api_key': ApiConsts.apiKey, 'with_genres': genre.id},
         options: Options(
           headers: {
