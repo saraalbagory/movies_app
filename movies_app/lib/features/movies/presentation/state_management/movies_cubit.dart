@@ -19,6 +19,26 @@ class MoviesCubit extends Cubit<MoviesCubitState> {
       emit(ErrorMovieState(errorMessage: e.toString()));
     }
   }
+  void getRecommendMovies() async {
+    emit(LoadingMovieState());
+    try {
+      var recommendMovies = await moviesRepository.getRecommenedMovies();
+      print(recommendMovies.length);
+      emit(SuccessfulMovieState(movies: recommendMovies));
+    } catch (e) {
+      emit(ErrorMovieState(errorMessage: e.toString()));
+    }
+  }
+  void getNewlyReleasedMovies() async {
+    emit(LoadingMovieState());
+    try {
+      var movies = await moviesRepository.getNewlyReleasedMovies();
+      print(movies.length);
+      emit(SuccessfulMovieState(movies: movies));
+    } catch (e) {
+      emit(ErrorMovieState(errorMessage: e.toString()));
+    }
+  }
 
   
 }

@@ -8,4 +8,6 @@ class ApiConsts {
   static String getRecommendedMoviesEndpoint="/movie/top_rated";
   static String imageBaseUrl="https://image.tmdb.org/t/p/";
   static String imagesSize="w342";
+  static String backdropSize= "original";
+
 }
