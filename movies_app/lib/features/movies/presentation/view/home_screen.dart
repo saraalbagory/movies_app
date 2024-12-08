@@ -4,11 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
 import 'package:movies_app/support/app_colors.dart';
-import 'package:movies_app/features/movies/presentation/state_management/movies_cubit.dart';
-import 'package:movies_app/features/movies/presentation/state_management/movies_cubit_states.dart';
 import 'package:movies_app/features/browse/presentation/screens/genresScreen.dart';
 import 'package:movies_app/features/browse/presentation/screens/search.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/movie_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,31 +15,88 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _screens = [
+    Column(
+      children: [
+        Expanded(
+          child: ListView(
+            children: const [
+              PopularMoviesSlider(),
+              MoviesList(
+                title: 'Recommended',
+                newRelease: false,
+              ),
+              MoviesList(
+                title: 'New Release',
+                newRelease: true,
+              ),
+            ],
+          ),
+        ),
+      ],
+    ),
+    // Search screen
+    const Search(),
+    // Genres screen
+    const GenresScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView(
-              children: const [
-                PopularMoviesSlider(),
-                MoviesList(
-                  title: 'Recommended',
-                  newRelease: false,
+      body: _screens[_selectedIndex],
+      bottomNavigationBar: Padding(
+        padding: EdgeInsets.all(12.h),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(25.0.r),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppColors.backgroundColor,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.1),
+                  blurRadius: 10,
+                  offset: Offset(0, 4),
                 ),
-                MoviesList(
-                  title: 'New Release',
-                  newRelease: true,
-                )
+              ],
+            ),
+            child: BottomNavigationBar(
+              currentIndex: _selectedIndex,
+              onTap: _onItemTapped,
+              selectedItemColor: AppColors.yellow,
+              unselectedItemColor: Colors.white,
+              backgroundColor: AppColors.backgroundColor,
+              type: BottomNavigationBarType.fixed,
+              showSelectedLabels: true,
+              showUnselectedLabels: false,
+              elevation: 0,
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home_rounded),
+                  label: 'Movies',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.search),
+                  label: 'Search',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.explore),
+                  label: 'Genres',
+                ),
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
-
-    //to be modif
   }
 }
