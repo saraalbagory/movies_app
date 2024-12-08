@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/movies/data/models/SearchReturnModel.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
+import 'package:movies_app/features/browse/data/models/SearchReturnModel.dart';
 
 class SearchResultsWidgets extends StatefulWidget {
   const SearchResultsWidgets({

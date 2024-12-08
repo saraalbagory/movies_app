@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/genresViewWidget.dart';
+import 'package:movies_app/features/browse/presentation/widgets/genresViewWidget.dart';
 
 class GenresScreen extends StatelessWidget {
   const GenresScreen({super.key});

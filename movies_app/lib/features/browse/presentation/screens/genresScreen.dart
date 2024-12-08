@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:movies_app/features/movies/data/models/GenresModel.dart';
+import 'package:movies_app/features/browse/presentation/widgets/genresViewWidget.dart';
 
-class MoviesbyGenre extends StatelessWidget {
-  const MoviesbyGenre({super.key, required this.genre});
-  final Genre genre;
+class GenresScreen extends StatelessWidget {
+  const GenresScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(genre.name.toString()),
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios)),
+        title: const Text("GENRES"),
       ),
       body: Column(
-        children: [],
+        children: [
+          Expanded(child: GenresView()),
+        ],
       ),
     );
   }

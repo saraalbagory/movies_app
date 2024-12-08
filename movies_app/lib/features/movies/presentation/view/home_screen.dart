@@ -6,10 +6,9 @@ import 'package:movies_app/features/movies/presentation/view/widgets/movies_list
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/features/movies/presentation/state_management/movies_cubit.dart';
 import 'package:movies_app/features/movies/presentation/state_management/movies_cubit_states.dart';
-import 'package:movies_app/features/movies/presentation/view/genresScreen.dart';
-import 'package:movies_app/features/movies/presentation/view/search.dart';
+import 'package:movies_app/features/browse/presentation/screens/genresScreen.dart';
+import 'package:movies_app/features/browse/presentation/screens/search.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movie_card.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: AppColors.backgroundColor,
       body: Column(
         children: [
@@ -45,6 +43,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
 
-        //to be modif
+    //to be modif
   }
 }
