@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/recommened_movies_list.dart';
+import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
 import 'package:movies_app/support/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,8 +20,17 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Expanded(
             child: ListView(
-              children: const [PopularMoviesSlider(),RecommendMoviesList()],
-              
+              children: const [
+                PopularMoviesSlider(),
+                MoviesList(
+                  title: 'Recommended',
+                  newRelease: false,
+                ),
+                MoviesList(
+                  title: 'New Release',
+                  newRelease: true,
+                )
+              ],
             ),
           ),
         ],
