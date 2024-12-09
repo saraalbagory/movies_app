@@ -20,8 +20,13 @@ import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dar
 import 'package:movies_app/features/movies/domain/usecases/view_newly_released_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_popular_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
+import 'package:movies_app/features/movies/domain/usecases/view_similar_movies.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
+import 'package:movies_app/features/movies_details/data/data_source/movie_details_data_source.dart';
+import 'package:movies_app/features/movies_details/data/data_source/movie_details_data_source_impl.dart';
+import 'package:movies_app/features/movies_details/data/repositry/movie_details_repo_impl.dart';
+import 'package:movies_app/features/movies_details/domain/repositry/movies_details_repositry.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -70,7 +75,7 @@ class MyApp extends StatelessWidget {
           home: child,
         );
       },
-      child: const HomeScreen(),
+      child: const MovieListScreen(title: ""),
     );
   }
 }
@@ -97,8 +102,12 @@ class _MovieListScreenState extends State<MovieListScreen> {
   Widget build(BuildContext context) {
     // Initialize dependencies
     MoviesRepository repo = MovieRepositoryImpl(ApiLocator.apiDataSource);
-    ViewRecommendedMovies usecase = ViewRecommendedMovies(repo);
-    Future<List<MovieModel>> moviesFuture = usecase();
+    ViewSimilarMovies usecase = ViewSimilarMovies(repo);
+    Future<List<MovieModel>> moviesFuture = usecase("912649");
+    //   MovieDetailsDataSource movieDetailsDataSource =
+    //   MovieDetailsDataSourceImpl();
+    // MoviesDetailsRepositry moviesDetailsRepositry =
+    //   MovieDetailsRepoImpl(movieDetailsDataSource);
 
     return Scaffold(
       appBar: AppBar(
@@ -106,7 +115,9 @@ class _MovieListScreenState extends State<MovieListScreen> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: FutureBuilder<List<MovieModel>>(
+        child:
+            // Text(moviesDetailsRepositry.fetchMovieDetails("912649").toString()),
+            FutureBuilder<List<MovieModel>>(
           future: moviesFuture,
           builder: (context, snapshot) {
             // Handle loading state

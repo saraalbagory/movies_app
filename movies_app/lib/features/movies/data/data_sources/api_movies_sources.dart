@@ -4,4 +4,5 @@ abstract class ApiMoviesSources {
   Future<GetMoviesResponse> getPopularMovies();
   Future<GetMoviesResponse> getNewlyReleasedMovies();
   Future<GetMoviesResponse> getRecommendedMovies();
+  Future<GetMoviesResponse> getSimilarMovies(String movieId);
 }
