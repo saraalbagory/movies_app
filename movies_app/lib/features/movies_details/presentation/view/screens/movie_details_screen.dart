@@ -186,7 +186,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         color: AppColors.transparentBlack,
                       ),
                       child: Row(
-                        children: [ImageIcon(),],
+                        children: [ImageIcon(AssetImage("assets/images/heart (1).png")),],
                       ),
                     )],
                   )
