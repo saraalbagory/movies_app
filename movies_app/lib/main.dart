@@ -1,4 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_genres_get_impl.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
+import 'package:movies_app/features/browse/data/data_sources/api_search_results_impl.dart';
+import 'package:movies_app/features/browse/data/repository/genres_repo_impl.dart';
+import 'package:movies_app/features/browse/data/repository/movies_by_genre_repo_impl.dart';
+import 'package:movies_app/features/browse/data/repository/search_movies_repo_impl.dart';
+import 'package:movies_app/features/browse/domain/repositoy/movies_by_genre_repo.dart';
+import 'package:movies_app/features/browse/domain/usecases/search_by_name.dart';
+import 'package:movies_app/features/browse/domain/usecases/view_genres.dart';
+import 'package:movies_app/features/browse/domain/usecases/view_movies_by_genre.dart';
+import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit.dart';
+import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit.dart';
+import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:movies_app/features/movies/data/data_sources/api_movies_sources_impl.dart';
 import 'package:movies_app/features/movies/data/repositry/movie_repositry_impl.dart';
 import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
@@ -16,8 +30,31 @@ import 'package:movies_app/features/movies_details/domain/repositry/movies_detai
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 void main() {
-  runApp(const MyApp());
+  ApiGenresGetImpl apiGenresGetImpl = new ApiGenresGetImpl();
+  ApiSearchResultsImpl apiSearchResultsImpl = new ApiSearchResultsImpl();
+  ApiMoviesByGenreImpl apiMoviesByGenreImpl = new ApiMoviesByGenreImpl();
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => SearchCubit(
+              SearchByName(SearchMoviesRepoImpl(apiSearchResultsImpl))),
+        ),
+        BlocProvider(
+          create: (_) =>
+              GenresCubit(ViewGenres(GenresRepoImpl(apiGenresGetImpl))),
+        ),
+        BlocProvider(
+          create: (_) => MoviesByGenreCubit(
+              ViewMoviesByGenre(MoviesByGenreRepoImpl(apiMoviesByGenreImpl))),
+        ),
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

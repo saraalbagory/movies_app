@@ -6,6 +6,7 @@ class GenresScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //context.read<GenresCubit>().fetchCategories();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
