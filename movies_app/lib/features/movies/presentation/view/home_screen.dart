@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/core/browsing_locators.dart';
+import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit.dart';
+import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
@@ -37,10 +41,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ],
     ),
-    // Search screen
-    const Search(),
-    // Genres screen
-    const GenresScreen(),
+    BlocProvider(
+      create: (_) => sl<SearchCubit>(),
+      child: const Search(),
+    ),
+    BlocProvider(
+      create: (_) => sl<GenresCubit>()..fetchCategories(),
+      child: const GenresScreen(),
+    ),
   ];
 
   void _onItemTapped(int index) {
@@ -98,6 +106,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
-
   }
 }

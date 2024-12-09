@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/browsing_locators.dart';
 import 'package:movies_app/features/browse/data/data_sources/api_genres_get_impl.dart';
 import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
 import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
@@ -33,27 +34,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  ApiGenresGetImpl apiGenresGetImpl = new ApiGenresGetImpl();
-  ApiSearchResultsImpl apiSearchResultsImpl = new ApiSearchResultsImpl();
-  ApiMoviesByGenreImpl apiMoviesByGenreImpl = new ApiMoviesByGenreImpl();
+  // Setup dependencies
+  browsingSetupLocator();
+
   runApp(
-    MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => SearchCubit(
-              SearchByName(SearchMoviesRepoImpl(apiSearchResultsImpl))),
-        ),
-        BlocProvider(
-          create: (_) =>
-              GenresCubit(ViewGenres(GenresRepoImpl(apiGenresGetImpl))),
-        ),
-        BlocProvider(
-          create: (_) => MoviesByGenreCubit(
-              ViewMoviesByGenre(MoviesByGenreRepoImpl(apiMoviesByGenreImpl))),
-        ),
-      ],
-      child: MyApp(),
-    ),
+    MyApp(),
   );
 }
 
