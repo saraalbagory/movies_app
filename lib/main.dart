@@ -1,34 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/core/browsing_locators.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_genres_get_impl.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_results_impl.dart';
-import 'package:movies_app/features/browse/data/repository/genres_repo_impl.dart';
-import 'package:movies_app/features/browse/data/repository/movies_by_genre_repo_impl.dart';
-import 'package:movies_app/features/browse/data/repository/search_movies_repo_impl.dart';
-import 'package:movies_app/features/browse/domain/repositoy/movies_by_genre_repo.dart';
-import 'package:movies_app/features/browse/domain/usecases/search_by_name.dart';
-import 'package:movies_app/features/browse/domain/usecases/view_genres.dart';
-import 'package:movies_app/features/browse/domain/usecases/view_movies_by_genre.dart';
-import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit.dart';
-import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit.dart';
-import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:movies_app/features/movies/data/repositry/movie_repositry_impl.dart';
 import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
 import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dart';
-import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_similar_movies.dart';
-import 'package:movies_app/features/movies_details/data/data_source/movie_details_data_source.dart';
-import 'package:movies_app/features/movies_details/data/data_source/movie_details_data_source_impl.dart';
-import 'package:movies_app/features/movies_details/data/repositry/movie_details_repo_impl.dart';
-import 'package:movies_app/features/movies_details/domain/repositry/movies_details_repositry.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app/core/browsing_locators.dart';
 import 'package:movies_app/support/routes_manager/routes.dart';
 import 'package:movies_app/support/routes_manager/routes_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -43,13 +22,9 @@ void main() async {
   runApp(MyApp());
 
   // Setup dependencies
-  
-
- 
 }
 
 class MyApp extends StatelessWidget {
-  
   const MyApp({super.key});
 
   // This widget is the root of your application.

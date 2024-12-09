@@ -4,13 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/browsing_locators.dart';
 import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit.dart';
 import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
-
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
 import 'package:movies_app/support/app_colors.dart';
-import 'package:movies_app/core/browsing_locators.dart';
-import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit.dart';
-import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:movies_app/features/browse/presentation/screens/genresScreen.dart';
 import 'package:movies_app/features/browse/presentation/screens/search.dart';
 
@@ -83,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: BottomNavigationBar(
               currentIndex: _selectedIndex,
               onTap: _onItemTapped,
-              selectedItemColor: AppColors.yellow,
+              selectedItemColor: AppColors.yellowColor,
               unselectedItemColor: Colors.white,
               backgroundColor: AppColors.backgroundColor,
               type: BottomNavigationBarType.fixed,
