@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:movies_app/main.dart';
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/support/resources/api_info/api_consts.dart';
 
@@ -58,7 +57,7 @@ class MovieCard extends StatelessWidget {
                   Icons.star_border_rounded,
                   fill: 1,
                   size: 15.sp,
-                  color: AppColors.yellow,
+                  color: AppColors.yellowColor,
                 )
               ],
             ),

@@ -65,12 +65,12 @@ class _MoviesListState extends State<MoviesList> {
                       label: Text(
                         "See More",
                         style:
-                            TextStyle(color: AppColors.yellow, fontSize: 16.sp),
+                            TextStyle(color: AppColors.yellowColor, fontSize: 16.sp),
                       ),
                       onPressed: () {},
                       icon: Icon(
                         Icons.arrow_forward_rounded,
-                        color: AppColors.yellow,
+                        color: AppColors.yellowColor,
                         size: 15.sp,
                       ),
                     ),
