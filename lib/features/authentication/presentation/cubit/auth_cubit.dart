@@ -5,14 +5,17 @@ import 'package:movies_app/features/authentication/domain/use_cases/login_use_ca
 import 'package:movies_app/features/authentication/domain/use_cases/logout_use_case.dart';
 import 'package:movies_app/features/authentication/domain/use_cases/registeration_use_case.dart';
 import 'package:movies_app/features/authentication/presentation/cubit/auth_state.dart';
+import 'package:movies_app/support/resources/locators/api_locator.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final LoginUseCase loginUseCase;
-  final RegisterUseCase registerUseCase;
-  final LogoutUseCase logoutUseCase;
+  late final LoginUseCase loginUseCase;
+  late final RegisterUseCase registerUseCase;
+  late final LogoutUseCase logoutUseCase;
 
-  AuthCubit(this.loginUseCase, this.registerUseCase, this.logoutUseCase)
-      : super(AuthInitial());
+  AuthCubit() : super(AuthInitial()){loginUseCase = LoginUseCase(ApiLocator.authRepository);
+   registerUseCase = RegisterUseCase(ApiLocator.authRepository);
+   logoutUseCase = LogoutUseCase(ApiLocator.authRepository);
+   }
 
   Future<void> login(LoginParameters loginParameters) async {
     emit(AuthLoading());
@@ -38,5 +41,4 @@ class AuthCubit extends Cubit<AuthState> {
     await logoutUseCase();
     emit(AuthInitial());
   }
-
 }

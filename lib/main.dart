@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/features/authentication/data/repository/auth_repository_impl.dart';
 import 'package:movies_app/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:movies_app/features/movies/data/repositry/movie_repositry_impl.dart';
 import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
@@ -11,9 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/support/routes_manager/routes.dart';
 import 'package:movies_app/support/routes_manager/routes_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'features/authentication/domain/use_cases/login_use_case.dart';
-import 'features/authentication/domain/use_cases/logout_use_case.dart';
-import 'features/authentication/domain/use_cases/registeration_use_case.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -21,38 +17,19 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final authRepository = AuthRepositoryImpl();
-
-  final loginUseCase = LoginUseCase(authRepository);
-  final registerUseCase = RegisterUseCase(authRepository);
-  final logoutUseCase = LogoutUseCase(authRepository);
-  runApp(MyApp(
-    loginUseCase: loginUseCase,
-    registerUseCase: registerUseCase,
-    logoutUseCase: logoutUseCase,
-  ));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final LoginUseCase loginUseCase;
-  final RegisterUseCase registerUseCase;
-  final LogoutUseCase logoutUseCase;
-  const MyApp(
-      {required this.loginUseCase,
-      required this.registerUseCase,
-      required this.logoutUseCase,
-      super.key});
+  
+  const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return BlocProvider(
-      create: (context) => AuthCubit(
-        loginUseCase,
-        registerUseCase,
-        logoutUseCase,
-      ),
+      create: (context) => AuthCubit(),
       child: ScreenUtilInit(
         designSize: const Size(430, 932),
         minTextAdapt: true,
