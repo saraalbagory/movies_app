@@ -6,6 +6,7 @@ import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dar
 import 'package:movies_app/features/movies/domain/usecases/view_newly_released_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_popular_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
+import 'package:movies_app/features/movies/domain/usecases/view_similar_movies.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/features/movies_details/data/data_source/movie_details_data_source.dart';
@@ -63,14 +64,13 @@ class _MovieListScreenState extends State<MovieListScreen> {
   @override
   Widget build(BuildContext context) {
     // Initialize dependencies
-    // MoviesRepository repo = MovieRepositoryImpl(ApiLocator.apiDataSource);
-    // ViewRecommendedMovies usecase = ViewRecommendedMovies(repo);
-    // Future<List<MovieModel>> moviesFuture = usecase();
-      MovieDetailsDataSource movieDetailsDataSource =
-      MovieDetailsDataSourceImpl();
-    MoviesDetailsRepositry moviesDetailsRepositry =
-      MovieDetailsRepoImpl(movieDetailsDataSource);
-     
+    MoviesRepository repo = MovieRepositoryImpl(ApiLocator.apiDataSource);
+    ViewSimilarMovies usecase = ViewSimilarMovies(repo);
+    Future<List<MovieModel>> moviesFuture = usecase("912649");
+    //   MovieDetailsDataSource movieDetailsDataSource =
+    //   MovieDetailsDataSourceImpl();
+    // MoviesDetailsRepositry moviesDetailsRepositry =
+    //   MovieDetailsRepoImpl(movieDetailsDataSource);
 
     return Scaffold(
       appBar: AppBar(
@@ -78,40 +78,41 @@ class _MovieListScreenState extends State<MovieListScreen> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Text(moviesDetailsRepositry.fetchMovieDetails("912649").toString()),
-        // FutureBuilder<List<MovieModel>>(
-        //   future: moviesFuture,
-        //   builder: (context, snapshot) {
-        //     // Handle loading state
-        //     if (snapshot.connectionState == ConnectionState.waiting) {
-        //       return const CircularProgressIndicator();
-        //     }
+        child:
+            // Text(moviesDetailsRepositry.fetchMovieDetails("912649").toString()),
+            FutureBuilder<List<MovieModel>>(
+          future: moviesFuture,
+          builder: (context, snapshot) {
+            // Handle loading state
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const CircularProgressIndicator();
+            }
 
-        //     // Handle error state
-        //     if (snapshot.hasError) {
-        //       return Text('Error: ${snapshot.error}');
-        //     }
+            // Handle error state
+            if (snapshot.hasError) {
+              return Text('Error: ${snapshot.error}');
+            }
 
-        //     // Handle successful state
-        //     if (snapshot.hasData) {
-        //       final movies = snapshot.data!;
-        //       return ListView.builder(
-        //         itemCount: movies.length,
-        //         itemBuilder: (context, index) {
-        //           final movie = movies[index];
-        //           return ListTile(
-        //             title: Text(movie.title ?? " "),
-        //             subtitle:
-        //                 Text(movie.overview ?? 'No description available'),
-        //           );
-        //         },
-        //       );
-        //     }
+            // Handle successful state
+            if (snapshot.hasData) {
+              final movies = snapshot.data!;
+              return ListView.builder(
+                itemCount: movies.length,
+                itemBuilder: (context, index) {
+                  final movie = movies[index];
+                  return ListTile(
+                    title: Text(movie.title ?? " "),
+                    subtitle:
+                        Text(movie.overview ?? 'No description available'),
+                  );
+                },
+              );
+            }
 
-        //     // Handle case when no data is available
-        //     return const Text('No movies found.');
-        //   },
-       // ),
+            // Handle case when no data is available
+            return const Text('No movies found.');
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
