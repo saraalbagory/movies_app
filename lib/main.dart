@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/movies/data/data_sources/api_movies_sources_impl.dart';
 import 'package:movies_app/features/movies/data/repositry/movie_repositry_impl.dart';
 import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
 import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dart';
-import 'package:movies_app/features/movies/domain/usecases/view_newly_released_movies.dart';
-import 'package:movies_app/features/movies/domain/usecases/view_popular_movies.dart';
 import 'package:movies_app/features/movies/domain/usecases/view_recommended_movies.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
