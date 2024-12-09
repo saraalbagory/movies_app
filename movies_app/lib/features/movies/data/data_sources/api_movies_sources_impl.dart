@@ -18,7 +18,7 @@ class ApiMoviesSourcesImpl extends ApiMoviesSources {
           },
         ),
       );
-    //  print(response.data);
+      //  print(response.data);
       return GetMoviesResponse.fromJson(response.data);
     } catch (e) {
       throw e.toString();
@@ -36,13 +36,13 @@ class ApiMoviesSourcesImpl extends ApiMoviesSources {
             },
           ));
       print("Newly Released");
-    //  print(response.data);
+      //  print(response.data);
       return GetMoviesResponse.fromJson(response.data);
     } catch (e) {
       throw e.toString();
     }
   }
-  
+
   @override
   Future<GetMoviesResponse> getRecommendedMovies() async {
     try {
@@ -54,7 +54,28 @@ class ApiMoviesSourcesImpl extends ApiMoviesSources {
             },
           ));
       print("Recommended");
-     // print(response.data);
+      // print(response.data);
+      return GetMoviesResponse.fromJson(response.data);
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  @override
+  Future<GetMoviesResponse> getSimilarMovies(String movieId) async {
+    try {
+      var response = await dio.get(
+          ApiConsts.similarMoviesEndPoint +
+              movieId +
+              ApiConsts.similarMoviesEndPoint2,
+          options: Options(
+            headers: {
+              'Authorization': ApiConsts.apiAccessToken,
+              'accept': 'application/json',
+            },
+          ));
+      print("Similar");
+      // print(response.data);
       return GetMoviesResponse.fromJson(response.data);
     } catch (e) {
       throw e.toString();

@@ -59,4 +59,16 @@ class MovieRepositoryImpl extends MoviesRepository {
       throw Exception(e.toString()); // Use Exception for better error handling
     }
   }
+
+  @override
+  Future<List<MovieModel>> getSimilarMovies(String movieId) async {
+    try {
+      var apiResponse = await apiMoviesSources.getSimilarMovies(movieId);
+      return apiResponse.results!
+          .map((movie) => movie.movieResultToMovieModel())
+          .toList();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
+  }
 }
