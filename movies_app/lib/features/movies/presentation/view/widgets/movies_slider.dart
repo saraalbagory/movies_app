@@ -24,7 +24,6 @@ class _PopularMoviesSliderState extends State<PopularMoviesSlider> {
     moviesCubit.getPopularMovies();
   }
   // void didUpdateWidget(covariant HomeScreen oldWidget) {
-  //   // TODO: implement didUpdateWidget
   //   super.didUpdateWidget(oldWidget);
   //   moviesCubit.getPopularMovies();
   // }

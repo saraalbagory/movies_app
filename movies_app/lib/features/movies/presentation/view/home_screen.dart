@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
-import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
+import 'package:movies_app/features/movies/presentation/view/movies_screen.dart';
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/features/browse/presentation/screens/genresScreen.dart';
 import 'package:movies_app/features/browse/presentation/screens/search.dart';
@@ -18,25 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final List<Widget> _screens = [
-    Column(
-      children: [
-        Expanded(
-          child: ListView(
-            children: const [
-              PopularMoviesSlider(),
-              MoviesList(
-                title: 'Recommended',
-                newRelease: false,
-              ),
-              MoviesList(
-                title: 'New Release',
-                newRelease: true,
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
+    const MoviesScreen(),
     // Search screen
     const Search(),
     // Genres screen
@@ -65,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 10,
-                  offset: Offset(0, 4),
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),
