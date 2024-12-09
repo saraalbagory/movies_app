@@ -13,33 +13,30 @@ class MovieRepositoryImpl extends MoviesRepository {
   Future<List<MovieModel>> getMovies() async {
     try {
       var apiResponse = await apiMoviesSources.getPopularMovies();
-      
 
       if (apiResponse.results == null) {
         throw Exception('No results found');
       }
 
-    
       return apiResponse.results!.map((movie) {
-        return movie.MovieResultToMovieMode();
+        return movie.movieResultToMovieModel();
       }).toList();
     } catch (e) {
       throw Exception(e.toString()); // Use Exception for better error handling
     }
   }
+
   @override
-  Future<List<MovieModel>>  getNewlyReleasedMovies()async {
-      try {
+  Future<List<MovieModel>> getNewlyReleasedMovies() async {
+    try {
       var apiResponse = await apiMoviesSources.getNewlyReleasedMovies();
-      
 
       if (apiResponse.results == null) {
         throw Exception('No results found');
       }
 
-    
       return apiResponse.results!.map((movie) {
-        return movie.MovieResultToMovieMode();
+        return movie.movieResultToMovieModel();
       }).toList();
     } catch (e) {
       throw Exception(e.toString()); // Use Exception for better error handling
@@ -47,18 +44,16 @@ class MovieRepositoryImpl extends MoviesRepository {
   }
 
   @override
-  Future<List<MovieModel>>  getRecommenedMovies() async{
-      try {
+  Future<List<MovieModel>> getRecommenedMovies() async {
+    try {
       var apiResponse = await apiMoviesSources.getRecommendedMovies();
-      
 
       if (apiResponse.results == null) {
         throw Exception('No results found');
       }
 
-    
       return apiResponse.results!.map((movie) {
-        return movie.MovieResultToMovieMode();
+        return movie.movieResultToMovieModel();
       }).toList();
     } catch (e) {
       throw Exception(e.toString()); // Use Exception for better error handling

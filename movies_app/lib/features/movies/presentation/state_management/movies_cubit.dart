@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
 import 'package:movies_app/features/movies/domain/repositry/movies_repositry.dart';
 import 'package:movies_app/features/movies/presentation/state_management/movies_cubit_states.dart';
 import 'package:movies_app/support/resources/locators/api_locator.dart';
