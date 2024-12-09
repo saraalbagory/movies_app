@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_result.dart';
-import 'package:movies_app/features/browse/data/data_sources/api_search_results_impl.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:movies_app/features/browse/presentation/widgets/searchResultsWidget.dart';
+import 'package:movies_app/support/app_colors.dart';
 
 class Search extends StatefulWidget {
   const Search({super.key});
@@ -27,38 +29,33 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    // to be changed
-    ApiSearchResult apiSearchResult = ApiSearchResultsImpl();
-
+    final searchCubit = context.read<SearchCubit>();
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-        child: Column(
-          children: [
-            TextField(
+      backgroundColor: AppColors.backgroundColor,
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+            child: TextField(
               controller: controller,
               onChanged: (value) {
-                setState(() {});
+                searchCubit.searchMovies(value);
               },
-              decoration: const InputDecoration(hintText: 'Search...'),
+              style: TextStyle(color: Colors.white, fontSize: 20.sp),
+              decoration: const InputDecoration(
+                  hintText: 'Search...',
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                  ),
+                  iconColor: Colors.white),
             ),
-            Expanded(
-              child: SearchResultsWidgets(
-                query: controller.text,
-                apiSearchResult: apiSearchResult,
-              ),
+          ),
+          Expanded(
+            child: SearchResultsWidgets(
+              query: controller.text,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

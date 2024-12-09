@@ -29,18 +29,18 @@ class SuccessfulMovieState extends MoviesCubitState {
   List<Object?> get props => movies;
 }
 
-class SuccessfulRecommendedMovieState extends MoviesCubitState {
-  List<MovieModel> movies;
+// class SuccessfulRecommendedMovieState extends MoviesCubitState {
+//   List<MovieModel> movies;
 
-  SuccessfulRecommendedMovieState({required this.movies});
-  @override
-  List<Object?> get props => movies;
-}
+//   SuccessfulRecommendedMovieState({required this.movies});
+//   @override
+//   List<Object?> get props => movies;
+// }
 
-class SuccessfulNewlyReleasedMovieState extends MoviesCubitState {
-  List<MovieModel> movies;
+// class SuccessfulNewlyReleasedMovieState extends MoviesCubitState {
+//   List<MovieModel> movies;
 
-  SuccessfulNewlyReleasedMovieState({required this.movies});
-  @override
-  List<Object?> get props => movies;
-}
+//   SuccessfulNewlyReleasedMovieState({required this.movies});
+//   @override
+//   List<Object?> get props => movies;
+// }

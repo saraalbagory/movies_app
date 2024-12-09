@@ -2,7 +2,7 @@ import 'package:movies_app/features/movies/data/models/get_movies_response.dart'
 import 'package:movies_app/features/movies/domain/entites/movie_model.dart';
 
 extension MovieMapper on MovieResults {
-  MovieModel MovieResultToMovieMode() => MovieModel(
+  MovieModel movieResultToMovieModel() => MovieModel(
         adult: adult,
         backdropPath: backdropPath,
         genreIds: genreIds,

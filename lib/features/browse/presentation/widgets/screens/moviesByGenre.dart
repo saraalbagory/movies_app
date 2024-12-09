@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:movies_app/features/browse/data/models/GenresModel.dart';
 import 'package:movies_app/features/browse/presentation/widgets/moviesByGenreWidget.dart';
 
