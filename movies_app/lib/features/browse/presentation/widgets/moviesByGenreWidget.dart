@@ -27,19 +27,27 @@ class MoviesbyGenreWidget extends StatelessWidget {
           if (movies.isEmpty) {
             return const Center(child: Text("No Movies found."));
           }
-
-          return ListView.builder(
-            shrinkWrap: true,
-            physics: const ScrollPhysics(),
-            itemCount: movies.length,
-            itemBuilder: (context, index) {
-              final movie = movies[index];
-              return MovieCard(
-                impagePath: movie.backdropPath ?? '',
-                height: 200.h,
-                width: 100.w,
-              );
-            },
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+            child: GridView.builder(
+              shrinkWrap: true,
+              physics: ScrollPhysics(),
+              padding: EdgeInsets.all(8.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 20.w,
+                mainAxisSpacing: 25.h,
+              ),
+              itemCount: state.movies.length,
+              itemBuilder: (context, index) {
+                final movie = state.movies[index];
+                return MovieCard(
+                  impagePath: movie.backdropPath ?? '',
+                  height: 400.h,
+                  width: 300.w,
+                );
+              },
+            ),
           );
         }
         return const Center(child: Text("Something went wrong."));
