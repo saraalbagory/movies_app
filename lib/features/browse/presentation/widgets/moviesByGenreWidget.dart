@@ -5,7 +5,6 @@ import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre
 import 'package:movies_app/features/browse/data/data_sources/api_movies_by_genre_impl.dart';
 import 'package:movies_app/features/browse/data/models/GenresModel.dart';
 import 'package:movies_app/features/browse/data/models/moviesByGenre.dart';
-import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movie_card.dart';
 
 class MoviesbyGenreWidget extends StatelessWidget {

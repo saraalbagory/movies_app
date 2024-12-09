@@ -99,7 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: BlocListener<AuthCubit, AuthState>(
                         listener: (BuildContext context, state) {
                           if (state is Authenticated) {
-                            print('XXXX');
                             Navigator.of(context)
                                 .pushReplacementNamed(Routes.homeRoute);
                           }
