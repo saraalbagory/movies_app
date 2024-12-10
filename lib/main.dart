@@ -8,6 +8,7 @@ import 'package:movies_app/features/movies/domain/usecases/view_similar_movies.d
 import 'package:movies_app/support/resources/locators/api_locator.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/core/browsing_locators.dart';
+import 'package:movies_app/support/resources/locators/watchlist_locator.dart';
 import 'package:movies_app/support/routes_manager/routes.dart';
 import 'package:movies_app/support/routes_manager/routes_generator.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -19,6 +20,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   browsingSetupLocator();
+  watchlistLocator();
   runApp(const MyApp());
 
   // Setup dependencies

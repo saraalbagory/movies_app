@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/authentication/data/models/register_parameters.dart';
+import 'package:movies_app/features/authentication/data/models/user_data_model.dart';
 import 'package:movies_app/features/authentication/presentation/cubit/auth_cubit.dart';
 import 'package:movies_app/features/authentication/presentation/cubit/auth_state.dart';
 import 'package:movies_app/features/authentication/presentation/view/widgets/custom_elevated_button.dart';
@@ -136,13 +137,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: AppColors.blackColor, fontSize: 16.sp),
                           onTap: () {
                             if (_key.currentState!.validate()) {
+                              UserDataModel userDataModel = UserDataModel();
+                              userDataModel.email = emailController.text;
+                              userDataModel.name = nameController.text;
+                              userDataModel.phone = mobileController.text;
                               BlocProvider.of<AuthCubit>(context).register(
                                   RegisterParameters(
                                       email: emailController.text,
                                       password: passwordController.text,
                                       phone: mobileController.text,
                                       confirmPassword: passwordController.text,
-                                      name: nameController.text));
+                                      name: nameController.text),
+                                  userDataModel);
                             }
                           },
                         ),

@@ -6,9 +6,13 @@ import 'package:movies_app/features/browse/presentation/bloc/genres/geners_cubit
 import 'package:movies_app/features/browse/presentation/bloc/search/search_cubit.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_slider.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
+import 'package:movies_app/features/watchList/domain/usecases/add_to_watchlist_use_case.dart';
+import 'package:movies_app/features/watchList/presentation/cubit/watchlist_cubit.dart';
+import 'package:movies_app/features/watchList/presentation/view/watchlist_screen.dart';
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/features/browse/presentation/screens/genresScreen.dart';
 import 'package:movies_app/features/browse/presentation/screens/search.dart';
+import 'package:movies_app/support/resources/locators/watchlist_locator.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           child: ListView(
             children: [
-              PopularMoviesSlider(),
+              const PopularMoviesSlider(),
               MoviesList(
                 type: ListTypes.recommended,
                 title: 'Recommended',
@@ -47,6 +51,18 @@ class _HomeScreenState extends State<HomeScreen> {
     BlocProvider(
       create: (_) => sl<GenresCubit>()..fetchCategories(),
       child: const GenresScreen(),
+    ),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => WatchlistCubit(
+            addToWatchlist: wl<AddToWatchlistUseCase>(),
+            removeFromWatchlist: wl<RemoveFromWatchlistUseCase>(),
+            getWatchlistItems: wl<GetWatchlistItemsUseCase>(),
+          )..loadWatchlist(),
+        ),
+      ],
+      child: const WatchlistScreen(),
     ),
   ];
 
@@ -72,7 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 10,
-                  offset:const Offset(0, 4),
+                  offset: const Offset(0, 4),
                 ),
               ],
             ),
@@ -98,6 +114,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.explore),
                   label: 'Genres',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.list,
+                  ),
+                  label: 'Watchlist',
                 ),
               ],
             ),

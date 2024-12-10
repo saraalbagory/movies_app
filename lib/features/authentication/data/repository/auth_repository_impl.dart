@@ -3,6 +3,7 @@ import 'package:movies_app/features/authentication/data/data_source/auth_data_so
 import 'package:movies_app/features/authentication/data/data_source/auth_data_source_impl.dart';
 import 'package:movies_app/features/authentication/data/models/login_parameters.dart';
 import 'package:movies_app/features/authentication/data/models/register_parameters.dart';
+import 'package:movies_app/features/authentication/data/models/user_data_model.dart';
 import 'package:movies_app/features/authentication/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository{
@@ -19,8 +20,8 @@ class AuthRepositoryImpl extends AuthRepository{
   }
 
   @override
-  Future<User?> register(RegisterParameters registerParameters)async {
-   return await _authDataSource.register(registerParameters);
+  Future<User?> register(RegisterParameters registerParameters,UserDataModel userDataModel)async {
+   return await _authDataSource.register(registerParameters,userDataModel);
   }
 
 }
