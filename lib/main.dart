@@ -19,7 +19,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   browsingSetupLocator();
-  runApp(MyApp());
+  runApp(const MyApp());
 
   // Setup dependencies
 }

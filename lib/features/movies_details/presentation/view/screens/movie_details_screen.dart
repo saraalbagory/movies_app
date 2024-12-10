@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
 import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
 import 'package:movies_app/features/movies_details/presentation/state_managment(cubit)/movie_details_cubit.dart';
 import 'package:movies_app/features/movies_details/presentation/state_managment(cubit)/movie_details_cubit_states.dart';
 import 'package:movies_app/features/movies_details/presentation/view/widgets/movies_grid_list.dart';
-import 'package:movies_app/main.dart';
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/support/resources/api_info/api_consts.dart';
 
@@ -125,10 +123,10 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           IconButton.filled(
                               onPressed: () {},
                               style: IconButton.styleFrom(
-                                backgroundColor: AppColors.yellow,
+                                backgroundColor: AppColors.yellowColor,
                                 foregroundColor: Colors.white,
                               ),
-                              focusColor: AppColors.yellow,
+                              focusColor: AppColors.yellowColor,
                               iconSize: 50.sp,
                               padding: EdgeInsets.all(20.w),
                               icon: const Icon(
@@ -193,14 +191,14 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 49.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: AppColors.gray,
+                          color: AppColors.grayColor,
                         ),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               ImageIcon(
                                   const AssetImage("assets/images/heart.png"),
-                                  color: AppColors.yellow),
+                                  color: AppColors.yellowColor),
                               Text(state.movieDetailsModel.voteCount.toString(),
                                   style: TextStyle(
                                       fontSize: 20.sp,
@@ -213,13 +211,13 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 49.h,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
-                            color: AppColors.gray),
+                            color: AppColors.grayColor),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ImageIcon(
                               const AssetImage("assets/images/clock.png"),
-                              color: AppColors.yellow,
+                              color: AppColors.yellowColor,
                             ),
                             Text(state.movieDetailsModel.runtime.toString(),
                                 style: TextStyle(
@@ -234,14 +232,14 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                         height: 49.h,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
-                          color: AppColors.gray,
+                          color: AppColors.textGrey,
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             ImageIcon(
                               const AssetImage("assets/images/star.png"),
-                              color: AppColors.yellow,
+                              color: AppColors.yellowColor,
                             ),
                             Text(state.movieDetailsModel.voteAverage.toString(),
                                 style: TextStyle(
@@ -304,7 +302,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                   height: 36.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    color: AppColors.gray,
+                                    color: AppColors.textGrey,
                                   ),
                                   child: Center(
                                     child: Text(

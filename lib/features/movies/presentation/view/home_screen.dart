@@ -25,15 +25,15 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Expanded(
           child: ListView(
-            children: const [
+            children: [
               PopularMoviesSlider(),
               MoviesList(
+                type: ListTypes.recommended,
                 title: 'Recommended',
-                newRelease: false,
               ),
               MoviesList(
                 title: 'New Release',
-                newRelease: true,
+                type: ListTypes.newRelease,
               ),
             ],
           ),
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 BoxShadow(
                   color: Colors.black.withOpacity(0.1),
                   blurRadius: 10,
-                  offset: Offset(0, 4),
+                  offset:const Offset(0, 4),
                 ),
               ],
             ),
