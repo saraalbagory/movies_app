@@ -4,11 +4,11 @@ import 'package:movies_app/features/authentication/data/models/login_parameters.
 import 'package:movies_app/features/authentication/data/models/register_parameters.dart';
 
 class AuthDataSourceImpl extends AuthDataSource{
-  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
   @override
   Future<User?> register(RegisterParameters registerParameters) async {
-    UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+    UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(
       email: registerParameters.email,
       password: registerParameters.password,
     );
@@ -17,7 +17,7 @@ class AuthDataSourceImpl extends AuthDataSource{
 
   @override
   Future<User?> login(LoginParameters loginParameters) async {
-    UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+    UserCredential userCredential = await firebaseAuth.signInWithEmailAndPassword(
       email: loginParameters.email,
       password: loginParameters.password,
     );
@@ -26,7 +26,7 @@ class AuthDataSourceImpl extends AuthDataSource{
 
   @override
   Future<void> logout() async {
-    await _firebaseAuth.signOut();
+    await firebaseAuth.signOut();
   }
 
   // @override
