@@ -92,6 +92,7 @@ class _MoviesListState extends State<MoviesList> {
                         impagePath: state.movies[index].posterPath ?? "",
                         height: 220.h,
                         width: 140.w,
+                        movieId: state.movies[index].id.toString(),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {

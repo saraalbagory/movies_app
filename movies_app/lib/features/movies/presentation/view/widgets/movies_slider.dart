@@ -86,7 +86,11 @@ class _PopularMoviesSliderState extends State<PopularMoviesSlider> {
                         itemBuilder:
                             (BuildContext context, int index, int realIndex) {
                           return MovieCard(
-                              impagePath: state.movies[index].posterPath ?? "", height: 350.h, width: 234.w,);
+                            impagePath: state.movies[index].posterPath ?? "",
+                            height: 350.h,
+                            width: 234.w,
+                            movieId: state.movies[index].id.toString(),
+                          );
                         },
                         itemCount: state.movies.length,
                         options: CarouselOptions(

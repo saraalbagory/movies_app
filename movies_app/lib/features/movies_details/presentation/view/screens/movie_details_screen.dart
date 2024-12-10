@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
+import 'package:movies_app/features/movies/presentation/view/widgets/movies_list.dart';
 import 'package:movies_app/features/movies_details/presentation/state_managment(cubit)/movie_details_cubit.dart';
 import 'package:movies_app/features/movies_details/presentation/state_managment(cubit)/movie_details_cubit_states.dart';
+import 'package:movies_app/features/movies_details/presentation/view/widgets/movies_grid_list.dart';
 import 'package:movies_app/main.dart';
 import 'package:movies_app/support/app_colors.dart';
 import 'package:movies_app/support/resources/api_info/api_consts.dart';
@@ -46,6 +49,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
           } else if (state is SucessfulfetchingMovieDetailsState) {
             return SingleChildScrollView(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Stack(
                     children: [
@@ -84,8 +88,9 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [SizedBox(
-                            height:28.h,
+                        children: [
+                          SizedBox(
+                            height: 28.h,
                           ),
                           Row(
                             children: [
@@ -142,7 +147,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 color: Colors.white),
                           ),
                           Text(
-                            state.movieDetailsModel.releaseDate!,
+                            returnYear(state.movieDetailsModel.releaseDate!),
                             style: TextStyle(
                                 fontSize: 26.sp,
                                 fontWeight: FontWeight.w700,
@@ -156,7 +161,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     onPressed: () {},
                     style: ButtonStyle(
                       backgroundColor: WidgetStateProperty.all(
-                          Color(0xffE82626)), // Background color
+                          const Color(0xffE82626)), // Background color
                       foregroundColor:
                           WidgetStateProperty.all(Colors.white), // Text color
                       padding: WidgetStateProperty.all(
@@ -177,18 +182,149 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           color: Colors.white),
                     ),
                   ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
                   Row(
-                    children: [Container(
-                      width: 122.w,
-                      height: 47.h,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: AppColors.transparentBlack,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Container(
+                        width: 122.w,
+                        height: 49.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: AppColors.gray,
+                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ImageIcon(
+                                  const AssetImage("assets/images/heart.png"),
+                                  color: AppColors.yellow),
+                              Text(state.movieDetailsModel.voteCount.toString(),
+                                  style: TextStyle(
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.white)),
+                            ]),
                       ),
-                      child: Row(
-                        children: [ImageIcon(AssetImage("assets/images/heart (1).png")),],
+                      Container(
+                        width: 122.w,
+                        height: 49.h,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: AppColors.gray),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/images/clock.png"),
+                              color: AppColors.yellow,
+                            ),
+                            Text(state.movieDetailsModel.runtime.toString(),
+                                style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white))
+                          ],
+                        ),
                       ),
-                    )],
+                      Container(
+                        width: 122.w,
+                        height: 49.h,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: AppColors.gray,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ImageIcon(
+                              const AssetImage("assets/images/star.png"),
+                              color: AppColors.yellow,
+                            ),
+                            Text(state.movieDetailsModel.voteAverage.toString(),
+                                style: TextStyle(
+                                    fontSize: 20.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white))
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                  MoviesGridList(
+                    title: "Similar",
+                    type: ListTypes.similar,
+                    movieId: state.movieDetailsModel.id.toString(),
+                  ),
+                  Container(
+                    height: 275.h,
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Summary",
+                            style: TextStyle(
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white)),
+                        Text(state.movieDetailsModel.overview ?? "",
+                            style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.white))
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 132.h,
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Genres",
+                            style: TextStyle(
+                              fontSize: 24.sp,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white
+                            )),
+                        SizedBox(height: 10,),
+                        Expanded(
+                          child: Wrap(
+                            spacing: 8.0, // Horizontal space between items
+                            runSpacing: 8.0, // Vertical space between rows
+                            children: List.generate(
+                              state.movieDetailsModel.genres?.length ?? 0,
+                              (genreIndex) {
+                                return Container(
+                                  width: 122.w,
+                                  height: 36.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: AppColors.gray,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      state.movieDetailsModel
+                                              .genres?[genreIndex].name ??
+                                          "",
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -200,4 +336,12 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
       ),
     );
   }
+}
+
+String returnYear(String dateString) {
+  DateTime date = DateTime.parse(dateString);
+
+  int year = date.year;
+
+  return year.toString();
 }

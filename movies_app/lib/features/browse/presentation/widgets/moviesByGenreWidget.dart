@@ -38,6 +38,7 @@ class MoviesbyGenreWidget extends StatelessWidget {
                 impagePath: movie.backdropPath ?? '',
                 height: 200.h,
                 width: 100.w,
+                movieId: state.movies[index].id.toString(),
               );
             },
           );
