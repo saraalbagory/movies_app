@@ -24,7 +24,7 @@ class _SearchResultsWidgetsState extends State<SearchResultsWidgets> {
       child: BlocBuilder<SearchCubit, SearchState>(
         builder: (context, state) {
           if (state is SearchInitial) {
-            return Center(child: Text("Enter a query to search"));
+            return Center(child: Image.asset("assets/images/Empty 1.png",fit: BoxFit.contain,width: 100.w,));
           } else if (state is SearchLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (state is SearchLoaded) {
@@ -36,8 +36,9 @@ class _SearchResultsWidgetsState extends State<SearchResultsWidgets> {
                 padding: EdgeInsets.all(8.0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 20.w,
-                  mainAxisSpacing: 25.h,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 25,
+                  childAspectRatio:  (610 / 2.3)/399 ,
                 ),
                 itemCount: state.movies.length,
                 itemBuilder: (context, index) {
@@ -45,8 +46,8 @@ class _SearchResultsWidgetsState extends State<SearchResultsWidgets> {
                   return MovieCard(
                      movieId: state.movies[index].id.toString(),
                     impagePath: movie.backdropPath ?? '',
-                    height: 400.h,
-                    width: 300.w,
+                    height: 279.h,
+                     width: 191.w,
                   );
                 },
               ),

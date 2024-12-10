@@ -35,8 +35,9 @@ class MoviesbyGenreWidget extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
-                crossAxisSpacing: 20.w,
-                mainAxisSpacing: 25.h,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 25,
+                  childAspectRatio:  (610 / 2.3)/399 ,
               ),
               itemCount: state.movies.length,
               itemBuilder: (context, index) {

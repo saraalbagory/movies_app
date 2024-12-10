@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movies_app/features/browse/data/models/GenresModel.dart';
 import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit.dart';
 import 'package:movies_app/features/browse/presentation/bloc/genre_Movies/genre_movies_cubit_states.dart';
@@ -32,8 +33,8 @@ class MoviesbyGenreWidget extends StatelessWidget {
               return MovieCard(
                 movieId: state.movies[index].id.toString(),
                 impagePath: movie.backdropPath ?? '',
-                height: double.infinity,
-                width: double.infinity,
+                height: 279.h,
+                width: 191.w,
               );
             },
           );
