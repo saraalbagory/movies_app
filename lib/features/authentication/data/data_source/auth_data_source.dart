@@ -5,6 +5,6 @@ import 'package:movies_app/features/authentication/data/models/register_paramete
 abstract class AuthDataSource {
   Future<User?> register(RegisterParameters registerParameters);
   Future<User?> login(LoginParameters loginParameters);
-  Future<void> logout();
+  Future logout();
   // Future<String> forgotPassword(String email);
 }

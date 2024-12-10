@@ -25,7 +25,7 @@ class AuthDataSourceImpl extends AuthDataSource{
   }
 
   @override
-  Future<void> logout() async {
+  Future logout() async {
     await firebaseAuth.signOut();
   }
 
