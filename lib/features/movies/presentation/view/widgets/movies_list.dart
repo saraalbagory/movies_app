@@ -10,9 +10,9 @@ import 'package:movies_app/support/app_colors.dart';
 
 class MoviesList extends StatefulWidget {
   final String title;
-  final bool newRelease;
-
-  const MoviesList({super.key, required this.title, required this.newRelease});
+  final ListTypes type;
+  String? movieId;
+  MoviesList({super.key, required this.title, required this.type, this.movieId});
 
   @override
   State<MoviesList> createState() => _MoviesListState();
@@ -24,11 +24,15 @@ class _MoviesListState extends State<MoviesList> {
   void initState() {
     super.initState();
     _moviesCubit = MoviesCubit();
-    if(widget.newRelease){
+    if(widget.type==ListTypes.newRelease){
       _moviesCubit.getNewlyReleasedMovies();
     }
-    else{
+    else if(widget.type==ListTypes.recommended){
       _moviesCubit.getRecommendMovies();
+    }
+    else if(widget.type==ListTypes.similar)
+    {
+      _moviesCubit.getSimilarMovies(widget.movieId??"");
     }
     
   }
@@ -88,6 +92,7 @@ class _MoviesListState extends State<MoviesList> {
                         impagePath: state.movies[index].posterPath ?? "",
                         height: 220.h,
                         width: 140.w,
+                        movieId: state.movies[index].id.toString(),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) {
@@ -106,3 +111,5 @@ class _MoviesListState extends State<MoviesList> {
     );
   }
 }
+
+enum ListTypes{ newRelease,similar,recommended,}

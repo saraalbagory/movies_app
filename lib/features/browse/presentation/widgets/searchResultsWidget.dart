@@ -43,6 +43,7 @@ class _SearchResultsWidgetsState extends State<SearchResultsWidgets> {
                 itemBuilder: (context, index) {
                   final movie = state.movies[index];
                   return MovieCard(
+                     movieId: state.movies[index].id.toString(),
                     impagePath: movie.backdropPath ?? '',
                     height: 400.h,
                     width: 300.w,

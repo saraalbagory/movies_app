@@ -7,8 +7,14 @@ class MovieCard extends StatelessWidget {
   final String impagePath;
   final double height;
   final double width;
+  final String movieId;
 
-  const MovieCard({super.key, required this.impagePath, required this.height, required this.width});
+  const MovieCard(
+      {super.key,
+      required this.impagePath,
+      required this.height,
+      required this.width,
+      required this.movieId});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +25,7 @@ class MovieCard extends StatelessWidget {
           width: width,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-             // color: AppColors.transparentBlack,
+              // color: AppColors.transparentBlack,
               borderRadius: BorderRadius.circular(20.h)),
           child: Image.network(
             ApiConsts.imageBaseUrl + ApiConsts.imagesSize + impagePath,
