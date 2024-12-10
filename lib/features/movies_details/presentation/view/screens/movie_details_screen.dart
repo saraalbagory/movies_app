@@ -96,7 +96,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 width: 12.w,
                               ),
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () => Navigator.of(context).pop(),
                                   icon: Icon(
                                     Icons.arrow_back_ios_rounded,
                                     color: Colors.white,
@@ -105,6 +105,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                   )),
                               const Spacer(),
                               IconButton(
+                                  //TODO: add to watchlist function
                                   onPressed: () {},
                                   icon: Icon(
                                     Icons.bookmark_rounded,
@@ -137,12 +138,22 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                           SizedBox(
                             height: 240.h,
                           ),
-                          Text(
-                            state.movieDetailsModel.tagline!,
-                            style: TextStyle(
-                                fontSize: 30.sp,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Center(
+                              child: Text(
+                                state.movieDetailsModel.originalTitle!,
+                                softWrap:
+                                    true, // Enables wrapping for long text
+                                maxLines: 2, // Limits the text to 2 lines
+                                overflow: TextOverflow.ellipsis, // Adds
+                                style: TextStyle(
+                                    fontSize: 30.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white),
+                              ),
+                            ),
                           ),
                           Text(
                             returnYear(state.movieDetailsModel.releaseDate!),
@@ -269,6 +280,8 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                 fontWeight: FontWeight.w700,
                                 color: Colors.white)),
                         Text(state.movieDetailsModel.overview ?? "",
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 6,
                             style: TextStyle(
                                 fontSize: 20.sp,
                                 fontWeight: FontWeight.w400,
@@ -278,18 +291,21 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                   ),
                   Container(
                     height: 132.h,
-                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    width: 399.w,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 10, vertical: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Genres",
                             style: TextStyle(
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.white
-                            )),
-                        SizedBox(height: 10,),
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white)),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Expanded(
                           child: Wrap(
                             spacing: 8.0, // Horizontal space between items
@@ -302,7 +318,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                                   height: 36.h,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    color: AppColors.textGrey,
+                                    color: AppColors.grayColor,
                                   ),
                                   child: Center(
                                     child: Text(

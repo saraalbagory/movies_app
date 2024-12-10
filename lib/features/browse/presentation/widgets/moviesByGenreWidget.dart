@@ -31,8 +31,8 @@ class MoviesbyGenreWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
             child: GridView.builder(
               shrinkWrap: true,
-              physics: ScrollPhysics(),
-              padding: EdgeInsets.all(8.0),
+              physics: const ScrollPhysics(),
+              padding: const EdgeInsets.all(8.0),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 20.w,

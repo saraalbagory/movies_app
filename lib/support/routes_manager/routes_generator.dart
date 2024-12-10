@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/features/authentication/presentation/view/login_screen.dart';
 import 'package:movies_app/features/authentication/presentation/view/register_screen.dart';
+import 'package:movies_app/features/movies_details/presentation/view/screens/movie_details_screen.dart';
 import 'package:movies_app/features/watchList/presentation/view/watchlist_screen.dart';
 import 'package:movies_app/features/movies/presentation/view/home_screen.dart';
 import 'package:movies_app/support/routes_manager/routes.dart';
@@ -18,6 +19,9 @@ class RoutesGenerator {
 
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
+
+      case Routes.movieDetails:
+        return MaterialPageRoute(builder: (_) => MovieDetailsScreen(movieId:settings.arguments as String));
 
       default:
         return unDefinedRoute();
