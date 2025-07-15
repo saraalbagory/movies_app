@@ -1,6 +1,6 @@
 # movies_app
 
-A new Flutter project.
+Movie browsing app using Flutter and Clean Architecture. Features include search, trending movies, detailed info, and watchlist. Uses Firebase Auth, Dio, Bloc, and GetIt.
 
 ## Getting Started
 
